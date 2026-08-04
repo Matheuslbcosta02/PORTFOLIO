@@ -40,38 +40,89 @@ navLinks.forEach(link => {
 });
 
 
-// URL da sua API (troca pela sua)
 const API_URL = "https://yellow-hall-a546.theu2016psn.workers.dev";
 
-// registra visita
+
+// registra a visita atual
 async function registrarVisita() {
-  try {
-    await fetch(`${API_URL}/visit`);
-  } catch (error) {
-    console.log("erro ao registrar visita", error);
-  }
-}
 
-// pega estatísticas
-async function carregarStats() {
-  try {
-    const response = await fetch(`${API_URL}/stats`);
-    const data = await response.json();
+    try {
 
-    // atualiza na tela
-    const totalEl = document.getElementById("total-visitas");
+        await fetch(`${API_URL}/visit`);
 
-    if (totalEl) {
-      totalEl.textContent = data.total;
+    } catch (erro) {
+
+        console.log("Erro ao registrar visita:", erro);
+
     }
 
-  } catch (error) {
-    console.log("erro ao carregar stats", error);
-  }
 }
 
-// executa quando a página carrega
+
+// carrega estatísticas
+async function carregarDashboard() {
+
+    try {
+
+        const resposta = await fetch(`${API_URL}/stats`);
+
+        const dados = await resposta.json();
+
+
+        // total
+        document.getElementById("total-visitas").textContent = dados.total;
+
+
+        // hoje
+        document.getElementById("visitas-hoje").textContent = dados.today;
+
+
+        // última visita
+        if (dados.lastVisit) {
+
+            const data = new Date(dados.lastVisit);
+
+            document.getElementById("ultima-visita").textContent =
+                data.toLocaleString("pt-BR");
+
+        }
+
+
+        // países
+        const total = dados.total;
+
+
+        const paises = dados.countries
+            .filter(pais => pais.country !== null)
+            .map(pais => {
+
+                const porcentagem =
+                    ((pais.count / total) * 100).toFixed(0);
+
+                return `${pais.country}: ${porcentagem}%`;
+
+            })
+            .join(" | ");
+
+
+        document.getElementById("paises").textContent =
+            paises || "Sem dados";
+
+
+    } catch (erro) {
+
+        console.log("Erro ao carregar dashboard:", erro);
+
+    }
+
+}
+
+
+// executa quando página abre
 window.onload = () => {
-  registrarVisita();
-  carregarStats();
+
+    registrarVisita();
+
+    carregarDashboard();
+
 };
