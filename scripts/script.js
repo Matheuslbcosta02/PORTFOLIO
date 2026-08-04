@@ -40,7 +40,7 @@ navLinks.forEach(link => {
 });
 
 
-const API_URL = "https://yellow-hall-a546.theu2016psn.workers.dev";
+const API_URL = "https://workerportfolio.theu2016psn.workers.dev";
 
 
 // registra a visita atual
