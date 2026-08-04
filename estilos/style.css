@@ -303,64 +303,96 @@ footer a:hover{
 ========================== */
 
 #cloud-dashboard {
+
+  margin-top: 40px;
   margin-bottom: 20px;
+
+  padding: 25px;
+
+  background-color: var(--fundo-card);
+
+  border-radius: 10px;
+
 }
+
+
+#cloud-dashboard h2 {
+
+  margin-bottom: 25px;
+
+}
+
 
 
 .dashboard-container {
+
   display: grid;
+
   grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
+
+  gap: 20px;
+
 }
+
 
 
 .dashboard-card {
 
   background-color: var(--fundo-principal);
-  border-radius: 10px;
-  padding: 15px;
 
-  border-left: 4px solid var(--destaque-inverso);
+  border-radius: 10px;
+
+  padding: 20px;
+
+  border-left: 5px solid var(--destaque-inverso);
 
   transition: 0.3s;
 
 }
 
 
+
 .dashboard-card:hover {
 
-  border-left-width: 12px;
+  border-left-width: 15px;
+
   border-color: var(--destaque);
 
 }
 
 
+
 .dashboard-card h3 {
 
   color: var(--texto);
-  font-size: 0.9em;
-  margin-bottom: 8px;
+
+  font-size: 0.95em;
+
+  margin-bottom: 10px;
 
 }
+
 
 
 .dashboard-card p {
 
   color: var(--destaque);
-  font-size: 1.2em;
+
+  font-size: 1.4em;
+
   font-weight: bold;
 
 }
 
 
 
-/* celular */
+/* Responsivo */
 
-@media screen and (max-width:600px){
+@media screen and (max-width:768px){
 
   .dashboard-container{
 
-    grid-template-columns: 1fr;
+    grid-template-columns:1fr;
 
   }
 
