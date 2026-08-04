@@ -38,3 +38,40 @@ navLinks.forEach(link => {
     }
   });
 });
+
+
+// URL da sua API (troca pela sua)
+const API_URL = "https://yellow-hall-a546.theu2016psn.workers.dev";
+
+// registra visita
+async function registrarVisita() {
+  try {
+    await fetch(`${API_URL}/visit`);
+  } catch (error) {
+    console.log("erro ao registrar visita", error);
+  }
+}
+
+// pega estatísticas
+async function carregarStats() {
+  try {
+    const response = await fetch(`${API_URL}/stats`);
+    const data = await response.json();
+
+    // atualiza na tela
+    const totalEl = document.getElementById("total-visitas");
+
+    if (totalEl) {
+      totalEl.textContent = data.total;
+    }
+
+  } catch (error) {
+    console.log("erro ao carregar stats", error);
+  }
+}
+
+// executa quando a página carrega
+window.onload = () => {
+  registrarVisita();
+  carregarStats();
+};
