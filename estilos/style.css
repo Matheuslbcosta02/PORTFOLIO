@@ -298,6 +298,35 @@ footer a:hover{
 
 }
 
+
+#cloud-dashboard {
+  padding: 60px 20px;
+  background: #0f172a;
+  color: white;
+  text-align: center;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 10px;
+  width: 250px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.card h3 {
+  margin-bottom: 10px;
+}
+
+
 @media screen and (min-width:768px) {
 
   main{
