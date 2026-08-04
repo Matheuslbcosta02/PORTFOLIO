@@ -38,3 +38,29 @@ navLinks.forEach(link => {
     }
   });
 });
+
+async function carregarDados() {
+  try {
+    const respostaGCP = await fetch("https://api.chucknorris.io/jokes/random");
+    const dadosGCP = await respostaGCP.json();
+
+    const gcpEl = document.getElementById("gcp-counter");
+    if (gcpEl) {
+      gcpEl.innerText = dadosGCP.value;
+    }
+
+  } catch (erro) {
+    document.getElementById("gcp-counter").innerText = "Erro";
+  }
+
+  try {
+    const azureEl = document.getElementById("azure-status");
+    if (azureEl) {
+      azureEl.innerText = "Online";
+    }
+  } catch (erro) {
+    document.getElementById("azure-status").innerText = "Erro";
+  }
+}
+
+carregarDados();
